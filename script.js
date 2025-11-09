@@ -97,7 +97,14 @@ const createTodoListNode = (todo, index) => {
   }
 
   // edit
-  listTextSpan.addEventListener("dblclick", () => {
+ const editBtn = document.createElement("button");
+  const editIcon = document.createElement("i");
+
+  editIcon.classList.add("fa-solid", "fa-pen-to-square", "text-purple-500","mr-2","hover:text-purple-800");
+    
+  editBtn.appendChild(editIcon);
+  
+  editBtn.addEventListener("click", () => {
     const newText = prompt("edit the to-do", todo.text);
     if (newText !== null) {
       todo.text = newText.trim();
@@ -108,9 +115,13 @@ const createTodoListNode = (todo, index) => {
 
   // delete button
   const deleteBtn = document.createElement("button");
-  deleteBtn.textContent = "Delete";
-  deleteBtn.className =
-    "bg-purple-500 text-white px-4 py-1 rounded-md hover:bg-purple-900 ";
+  const deleteIcon = document.createElement("i");
+
+  deleteIcon.classList.add("fa-solid", "fa-trash", "text-purple-500","hover:text-purple-800");
+
+  deleteBtn.appendChild(deleteIcon);
+
+
 
   deleteBtn.addEventListener("click", () => {
     todos.splice(index, 1);
@@ -121,6 +132,7 @@ const createTodoListNode = (todo, index) => {
 
   li.appendChild(checkbox);
   li.appendChild(listTextSpan);
+  li.appendChild(editBtn);
   li.appendChild(deleteBtn);
 
   return li;
